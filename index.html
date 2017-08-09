@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <!--输入：  meta:vp  按下tab键 自动生成   -->
+
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <style type="text/css">
+        html{
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        //REM适配
+        ~(function(desW){ // 设计稿的宽度
+            var winW = document.documentElement.clientWidth; // 浏览器的宽度
+            var n = winW/desW;
+            document.documentElement.style.fontSize = n*100+"px";  // 100设置的
+        })(640);
+        //  640 设计稿的宽度
+        //（设计稿的宽度/100） =  （设备的宽度/  font-size的大小）
+        //  winW/desW  = font-size/100  ;
+
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="music">
+        <!--<audio src="img/4046762143.aac" loop preload="none" id="audioMusic"></audio>-->
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1" >
+                <div class="bgm-btn">
+                    <audio loop src="" autoplay preload></audio>
+                </div>
+
+                <div style="width: 5.0rem;height: 9.46rem; border: 3px solid #ffcc99;margin: auto;margin-top: 0.9rem">
+                <img src="img/o_1bec8m4al1trq1k7m167s159c10j0r (1).png" alt=""/>
+                <img src="img/o_1bec8ql6l1fgm1o5b5au9gfq151h (1).png" alt=""/>
+                <img src="img/o_1bec8ql6l8p6dqp1l1k31emjc1f.png" alt=""/>
+                <img src="img/o_1bec8ql6l8p6dqp1l1k31emjc1f (3).png" alt=""/>
+                <img src="img/o_1bec8m4al1faoq9152rag44ahs (1).png" alt=""/>
+            </div>
+
+                <div class="photo"></div>
+                    <!--<img src="img/o_1beflosbr51oearugo9oeg7u9.jpeg" alt=""/>-->
+                <div class="element-box">
+                    个人简历
+                </div>
+                <span class="name">
+                        姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;:&nbsp;&nbsp;吴咪咪
+                    </span>
+                    <span class="edit">
+                        求职意向:Web前端工程师
+                    </span>
+                <div class="sanjiao">
+                    <div class="sanjiao1">
+                        <div class="san-l"></div>
+                        <div class="san-r"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-slide slide2">
+                <img src="img/o_1bec8ql6l1fgm1o5b5au9gfq151h.png" alt=""/>
+                <img src="img/o_1bec8ql6l8p6dqp1l1k31emjc1f (1).png" alt=""/>
+                <img src="img/o_1bec8ql6l8p6dqp1l1k31emjc1f (2).png" alt=""/>
+                <img src="img/o_1bec8ql6l8p6dqp1l1k31emjc1f (1).png" alt=""/>
+                <img src="img/o_1becfrqko1can1tn3cjn1n0v1cn515 (1).png" alt=""/>
+                <img src="img/o_1bec8m4al1faoq9152rag44ahs (1).png" alt=""/>
+
+                <div></div>
+            </div>
+
+
+
+            <div class="swiper-slide slide3">
+                wwojvnfjv
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+
+<script>
+
+
+    //初始化swiper
+    var mySwiper = new Swiper(".swiper-container",{
+        direction : "vertical",
+        loop:true,
+        onSlideChangeEnd :function(swiper){
+            var slideAry = swiper.slides; /*所有的滑块*/
+            var trueSlideNum = slideAry.length-2;/*真实的滑块的个数*/
+            var lastNum =  trueSlideNum+1;/*最后一个滑块的索引*/
+            /*获得当前滑块的索引*/
+            var curIn = swiper.activeIndex;
+            [].forEach.call(slideAry,function(item,index){
+                item.id = null;
+                if(curIn == index){
+                    /*第一张跟真实滑块最后一张是一样的，最后一张跟真实滑块的第一张是一样*/
+                    switch(curIn){
+                        case 0 :
+                            item.id = "page"+trueSlideNum;
+                            break;
+                        case lastNum :
+                            item.id  = "page1";
+                            break;
+                        default :
+                            item.id = "page"+curIn;
+
+                    }
+                }
+
+            })
+
+        }
+    })
+
+    ~(function(){
+        var music = document.querySelector(".music");
+        var audioMusic = document.querySelector("#audioMusic");
+        music.addEventListener("click",function(){
+            if(audioMusic.paused){/*判断是否是停止*/
+                audioMusic.play();
+                music.className = "music musicMove";
+                return;
+            }
+            audioMusic.pause();
+            music.className = "music";
+            music.style.opacity  = 1;
+        });
+        window.setTimeout(function(){
+            audioMusic.play();/*播放*/
+            /*边播放边缓存，触发事件canplay*/
+            audioMusic.addEventListener("canplay",function(){
+                music.className = "music musicMove";
+            })
+        },1000)
+
+
+    })()
+
+</script>
